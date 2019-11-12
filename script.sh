@@ -8,9 +8,10 @@ if [ $(id -u) -eq 0 ]; then # 1-Make sure the script is being executed with supe
 		echo "L'usuari $nom existeix!"
 		exit 1
 	else
-        password=$(perl -e 'print crypt($ARGV[0], "password")' $contra)
-		useradd -m -p $password $nom -c $nomr
-		[ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
+		useradd -m -c $nomr $nom # 5-Create the user / 7-Set the password.
+        [ $? -eq 0 ] && echo "L'usuari ha estat afegit al sistema." || echo "No s'ha pogut afegir l'usuari al sistema."
+        passwd $nom 
+        $contra
 	fi
 else
 	echo "Nomès pots crear usuaris en mode Super Usuari"
