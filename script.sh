@@ -14,7 +14,7 @@ if [ $(id -u) -eq 0 ]; then # 1-Make sure the script is being executed with supe
         passwd -e $nom  #9-Force password change on first login.
         [ $? -eq 0 ] && echo "La contrasenya d'ha establert" || echo "No s'ha pogut establir la contrasenya." # 8-Check to see if the passwd command succeeded.
         x = `hostname`
-        echo " El usuari és $user, la contrasenya és $contra i el host és $x." # 10-Display the username, password, and the host where the user was created.
+        echo " El usuari és $user, la contrasenya és $contra i el host és $HOSTNAME." # 10-Display the username, password, and the host where the user was created.
 	fi
 else
 	echo "Nomès pots crear usuaris en mode Super Usuari"
