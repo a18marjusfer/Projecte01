@@ -8,8 +8,8 @@ if [ $(id -u) -eq 0 ]; then # 1-Make sure the script is being executed with supe
 		echo "L'usuari $nom existeix!"
 		exit 1
 	else
-		pass=$(perl -e 'print crypt($ARGV[0], "password")' $contra)
-		useradd -m -p $pass $nom
+        password=$(perl -e 'print crypt($ARGV[0], "password")' $contra)
+		useradd -m -p $password $nom -c $nomr
 		[ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
 	fi
 else
