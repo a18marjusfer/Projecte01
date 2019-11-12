@@ -10,7 +10,10 @@ if [ $(id -u) -eq 0 ]; then # 1-Make sure the script is being executed with supe
 	else
 		useradd -m -c $nomr $nom # 5-Create the user / 7-Set the password.
         [ $? -eq 0 ] && echo "L'usuari ha estat afegit al sistema." || echo "No s'ha pogut afegir l'usuari al sistema."
-        echo -e "$contra\n$contra" | passwd $nom
+        echo -e "$contra\n$contra" | passwd $nom # 7-Set the password. # 8-Check to see if the passwd command succeeded.
+        passwd -e $nom  #9-Force password change on first login.
+        x = `hostname`
+        echo" El usuari és $user, la contrasenya és $contra i el host és $x."
 	fi
 else
 	echo "Nomès pots crear usuaris en mode Super Usuari"
